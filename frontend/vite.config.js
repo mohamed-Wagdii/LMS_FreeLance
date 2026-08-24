@@ -14,9 +14,9 @@ export default defineConfig(async ({ mode }) => {
 		},
 		plugins: [
 			frappeui({
-				frappeProxy: true,
+				frappeProxy: false,
 				lucideIcons: true,
-				jinjaBootData: true,
+				jinjaBootData: false,
 				buildConfig: {
 					indexHtmlPath: '../lms/www/_lms.html',
 				},
@@ -72,6 +72,14 @@ export default defineConfig(async ({ mode }) => {
 			// Host header, so we must forward to http://<site>:8000; a bare 127.0.0.1
 			// target makes Frappe 404 with "127.0.0.1 does not exist". (Backend :8000.)
 			proxy: {
+				'/api': {
+					target: 'http://localhost:5000',
+					changeOrigin: true,
+				},
+				'/files': {
+					target: 'http://localhost:5000',
+					changeOrigin: true,
+				},
 				'/scorm': {
 					target: 'http://127.0.0.1:8000',
 					router: (req) =>
