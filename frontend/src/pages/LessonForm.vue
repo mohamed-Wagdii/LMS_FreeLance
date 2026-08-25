@@ -140,6 +140,7 @@ import { resourceErrorMessage, submitResource } from '@/utils/resource'
 import { hasVideoContent } from '@/utils/video'
 import BlockEditor from '@/components/BlockEditor.vue'
 import BottomSheet from '@/components/BottomSheet.vue'
+import { getLmsRoute } from '@/utils/basePath'
 import { useScreenSize } from '@/utils/composables'
 import { useOnboarding, useTelemetry } from 'frappe-ui/frappe'
 import {
@@ -248,7 +249,7 @@ defineExpose({
 
 onMounted(() => {
 	if (!user.data?.is_moderator && !user.data?.is_instructor) {
-		window.location.href = '/login'
+		window.location.href = getLmsRoute('login')
 	}
 	capture('lesson_form_opened')
 	enablePlyr()

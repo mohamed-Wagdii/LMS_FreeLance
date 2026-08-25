@@ -77,6 +77,7 @@ import { useRouter } from 'vue-router'
 import { ref, computed, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { sessionStore } from '@/stores/session'
+import { getLmsRoute } from '@/utils/basePath'
 import { useSettings } from '@/stores/settings'
 import { usersStore } from '@/stores/user'
 import * as icons from 'lucide-vue-next'
@@ -169,7 +170,7 @@ let isActive = (tab) => {
 // one exception, leaving the SPA for Frappe's own /login, which vue-router
 // knows nothing about.
 const handleClick = (tab) => {
-	if (tab.label == 'Log in') window.location.href = '/login'
+	if (tab.label == 'Log in') window.location.href = getLmsRoute('login')
 	else router.push({ name: tab.to })
 }
 </script>

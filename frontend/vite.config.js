@@ -73,17 +73,17 @@ export default defineConfig(async ({ mode }) => {
 			// target makes Frappe 404 with "127.0.0.1 does not exist". (Backend :8000.)
 			proxy: {
 				'/api': {
-					target: 'http://localhost:5000',
+					target: 'http://127.0.0.1:5000',
 					changeOrigin: true,
 				},
 				'/files': {
-					target: 'http://localhost:5000',
+					target: 'http://127.0.0.1:5000',
 					changeOrigin: true,
 				},
 				'/scorm': {
-					target: 'http://127.0.0.1:8000',
+					target: 'http://127.0.0.1:5000',
 					router: (req) =>
-						`http://${req.headers.host.split(':')[0]}:8000`,
+						`http://${req.headers.host.split(':')[0]}:5000`,
 				},
 			},
 		},

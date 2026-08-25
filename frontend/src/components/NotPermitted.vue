@@ -17,7 +17,8 @@
 	</div>
 </template>
 <script setup>
-import { Button } from 'frappe-ui'
+import { FeatherIcon, Button } from 'frappe-ui'
+import { getLmsRoute } from '@/utils/basePath'
 
 const props = defineProps({
 	title: {
@@ -34,7 +35,7 @@ const props = defineProps({
 	},
 	buttonLink: {
 		type: String,
-		default: '/login',
+		default: getLmsRoute('login'),
 	},
 })
 

@@ -1,5 +1,11 @@
 import './index.css'
 import { createApp, watch } from 'vue'
+import { getLmsRoute } from '@/utils/basePath'
+
+if (window.location.pathname === '/login') {
+	window.location.href = getLmsRoute(`login${window.location.search}`)
+}
+
 import router from './router'
 import App from './App.vue'
 import { createPinia } from 'pinia'

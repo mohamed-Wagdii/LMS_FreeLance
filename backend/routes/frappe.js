@@ -355,4 +355,14 @@ router.post('/api/method/frappe.client.rename_doc', async (req, res) => {
     }
 });
 
+// Mock for get_pwa_manifest
+router.all('/api/method/lms.lms.api.get_pwa_manifest', (req, res) => {
+    return successResponse(res, {});
+});
+
+// Mock for get_translations
+router.all('/api/method/lms.lms.api.get_translations', (req, res) => {
+    return successResponse(res, {});
+});
+
 module.exports = router;

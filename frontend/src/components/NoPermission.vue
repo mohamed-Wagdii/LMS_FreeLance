@@ -31,14 +31,15 @@
 </template>
 <script setup>
 import { inject } from 'vue'
-import { Button, usePageMeta } from 'frappe-ui'
+import { FeatherIcon, Button, usePageMeta } from 'frappe-ui'
+import { getLmsRoute } from '@/utils/basePath'
 import { sessionStore } from '../stores/session'
 
 const user = inject('$user')
 const { brand } = sessionStore()
 
 const redirectToLogin = () => {
-	window.location.href = '/login'
+	window.location.href = getLmsRoute('login')
 }
 
 usePageMeta(() => {

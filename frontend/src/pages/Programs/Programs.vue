@@ -90,6 +90,7 @@ import {
 	usePageMeta,
 	createListResource,
 } from 'frappe-ui'
+import { getLmsRoute } from '@/utils/basePath'
 import { computed, inject, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useDebounceFn } from '@vueuse/core'
@@ -110,7 +111,7 @@ const filters = ref({})
 
 onMounted(() => {
 	if (!user.data) {
-		window.location.href = '/login'
+		window.location.href = getLmsRoute('login')
 	}
 	if (user.data?.is_moderator || user.data?.is_instructor) {
 		setFiltersFromQuery()

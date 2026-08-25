@@ -13,6 +13,7 @@
 </template>
 <script setup>
 import { inject } from 'vue'
+import { getLmsRoute } from '@/utils/basePath'
 import { Button } from 'frappe-ui'
 import Quiz from '@/components/Quiz.vue'
 
@@ -25,6 +26,6 @@ const props = defineProps({
 })
 
 const redirectToLogin = () => {
-	window.location.href = `/login`
+	window.location.href = getLmsRoute(`login`)
 }
 </script>

@@ -67,12 +67,13 @@
 <script setup>
 import { sessionStore } from '@/stores/session'
 import { call, createResource, Dropdown, toast } from 'frappe-ui'
-import { useRouter } from 'vue-router'
+import { getLmsRoute } from '@/utils/basePath'
 import { convertToTitleCase } from '@/utils'
 import { toggleTheme, theme } from '@/utils/theme'
 import { usersStore } from '@/stores/user'
 import { useSettings } from '@/stores/settings'
 import { h, watch, ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { createDialog } from '@/utils/dialogs'
 import FrappeCloudIcon from '@/components/Icons/FrappeCloudIcon.vue'
 import LMSLogo from '@/components/Icons/LMSLogo.vue'
@@ -272,7 +273,7 @@ const userDropdownOptions = computed(() => {
 					icon: 'lucide-log-in',
 					label: 'Log in',
 					onClick: () => {
-						window.location.href = '/login'
+						window.location.href = getLmsRoute('login')
 					},
 					condition: () => {
 						return !isLoggedIn

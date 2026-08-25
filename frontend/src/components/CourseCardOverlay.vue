@@ -150,6 +150,8 @@
 import { computed, inject } from 'vue'
 import { Badge, Button, call, createResource, toast } from 'frappe-ui'
 import { useRouter } from 'vue-router'
+import { sessionStore } from '@/stores/session'
+import { getLmsRoute } from '@/utils/basePath'
 import CertificationLinks from '@/components/CertificationLinks.vue'
 import VideoPreview from '@/components/VideoPreview.vue'
 import { useTelemetry } from 'frappe-ui/frappe'
@@ -178,7 +180,7 @@ function enrollStudent() {
 	if (!user.data) {
 		toast.warning(__('You need to login first to enroll for this course'))
 		setTimeout(() => {
-			window.location.href = `/login?redirect-to=${window.location.pathname}`
+			window.location.href = getLmsRoute(`login?redirect-to=${window.location.pathname}`)
 		}, 500)
 		return
 	}

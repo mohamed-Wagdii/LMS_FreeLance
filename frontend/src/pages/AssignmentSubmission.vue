@@ -9,7 +9,8 @@
 	</div>
 </template>
 <script setup>
-import { createResource, usePageMeta } from 'frappe-ui'
+import { call, createResource, usePageMeta } from 'frappe-ui'
+import { getLmsRoute } from '@/utils/basePath'
 import PageHeader from '@/components/Layouts/PageHeader.vue'
 import { computed, inject, onMounted, ref } from 'vue'
 import { sessionStore } from '../stores/session'
@@ -54,7 +55,7 @@ const title = createResource({
 
 onMounted(() => {
 	if (!user.data) {
-		window.location.href = '/login'
+		window.location.href = getLmsRoute('login')
 	}
 
 	if (new URLSearchParams(window.location.search).get('fromLesson')) {

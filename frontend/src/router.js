@@ -31,7 +31,8 @@ let router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
 	const { userResource } = usersStore()
-	let { isLoggedIn } = sessionStore()
+	const session = sessionStore()
+	let isLoggedIn = session.isLoggedIn
 	const { settings } = useSettings()
 
 	try {
@@ -39,16 +40,18 @@ router.beforeEach(async (to, from, next) => {
 			await userResource.promise
 		}
 	} catch (error) {
+		session.user = null
 		isLoggedIn = false
 	}
 
-	if (!isLoggedIn) {
-		if (to.name == 'Home') router.push({ name: 'Courses' })
+	if (!isLoggedIn && to.name !== 'Login') {
+		if (to.name == 'Home') {
+			return next({ name: 'Courses' })
+		}
 
 		await settings.promise
 		if (!settings.data.allow_guest_access) {
-			window.location.href = '/login'
-			return
+			return next({ name: 'Login', query: { 'redirect-to': to.fullPath } })
 		}
 	}
 

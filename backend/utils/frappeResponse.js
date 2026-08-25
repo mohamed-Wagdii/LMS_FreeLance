@@ -31,5 +31,7 @@ const sendFrappeError = (res, error) => {
 module.exports = {
   sendSuccess,
   sendError,
-  sendFrappeError
+  sendFrappeError,
+  successResponse: sendSuccess,
+  errorResponse: sendError
 };

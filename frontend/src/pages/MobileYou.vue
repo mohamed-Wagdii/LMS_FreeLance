@@ -7,7 +7,7 @@
 		>
 			<p class="text-p-base text-ink-gray-6">{{ signedOutPrompt }}</p>
 			<a
-				href="/login"
+				:href="getLmsRoute('login')"
 				class="text-p-base font-medium text-ink-gray-9 underline underline-offset-2"
 			>
 				{{ logInLabel }}
@@ -227,7 +227,7 @@ const viewProfileLabel = __('View profile')
 // BottomSheet's body is px-2 against a px-5 header, so a caller adds 12px to
 // land on the header's 20px — which is MobilePageLayout's body inset too.
 
-// A plain <a>, not a router link: /login is Frappe's own server-rendered page,
+// A plain <a>, not a router link: we construct it with getLmsRoute('login')
 // outside the SPA — the same reason MobileLayout's Log in tab uses
 // `window.location`.
 const signedOutPrompt = __('Log in to see your account.')

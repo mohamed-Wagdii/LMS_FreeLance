@@ -141,6 +141,7 @@
 </template>
 <script setup>
 import { Badge, createResource, usePageMeta } from 'frappe-ui'
+import { getLmsRoute } from '@/utils/basePath'
 import { inject, ref, computed, watch, nextTick } from 'vue'
 import { sessionStore } from '../stores/session'
 import PageHeader from '@/components/Layouts/PageHeader.vue'
@@ -213,7 +214,7 @@ const openApplicationModal = () => {
 }
 
 const redirectToLogin = (job) => {
-	window.location.href = `/login?redirect-to=/job-openings/${job}`
+	window.location.href = getLmsRoute(`login?redirect-to=/job-openings/${job}`)
 }
 
 // A company_website is a plain Data field, so it often arrives without a

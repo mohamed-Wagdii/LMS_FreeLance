@@ -114,6 +114,8 @@ import { inject, computed } from 'vue'
 import { Badge, Button, createResource, toast } from 'frappe-ui'
 import { formatNumberIntoCurrency, formatTime } from '@/utils'
 import { formatTimezone, nextOccurrence } from '@/utils/timezone'
+import { sessionStore } from '@/stores/session'
+import { getLmsRoute } from '@/utils/basePath'
 import DateRange from '@/components/Common/DateRange.vue'
 import VideoPreview from '@/components/VideoPreview.vue'
 
@@ -138,7 +140,7 @@ const enroll = createResource({
 
 const enrollInBatch = () => {
 	if (!user.data) {
-		window.location.href = `/login?redirect-to=/batches/${props.batch.data.name}`
+		window.location.href = getLmsRoute(`login?redirect-to=/batches/${props.batch.data.name}`)
 		return
 	}
 	enroll.submit(

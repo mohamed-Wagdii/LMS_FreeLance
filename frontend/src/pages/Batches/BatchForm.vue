@@ -305,6 +305,7 @@ import {
 	call,
 } from 'frappe-ui'
 import { InputLabel, useInputLabeling } from '@/components/Form/labeling'
+import { getLmsRoute } from '@/utils'
 import { useDebounceFn } from '@vueuse/core'
 import BooleanSwitch from '@/components/Controls/BooleanSwitch.vue'
 import {
@@ -448,7 +449,7 @@ const autoSave = useDebounceFn((): void => {
 }, 1000)
 
 onMounted(() => {
-	if (!user.data) window.location.href = '/login'
+	if (!user.data) window.location.href = getLmsRoute('login')
 })
 
 useKeyboardShortcuts({ shortcuts: [saveShortcut(() => submitBatch())] })
